@@ -218,7 +218,6 @@ class Calculator extends React.Component {
 	}
 }
 
-
 ReactDOM.render(
 	<Container>
 		<Margin>
