@@ -221,6 +221,71 @@ class Calculator extends React.Component {
 		);
 	}
 }
+/* function FancyBorder(props) {
+	return (
+	<div className={'FancyBorder' + props.color}>{props.right}{props.left}</div>)
+}
+function WelcomeDialog (){
+	return (
+		<Dialog title="Props" message='sds'/>
+	)
+} 
+function Dialog(props) {
+	return (
+	<FancyBorder color="blue" right={<h1 className='dialog-title'>{props.title}</h1>} left={<p className='Dialog-message'>{props.message}</p>}/>
+	)
+} */
+
+function FancyBorder(props) {
+	return (
+	  <div className={'FancyBorder FancyBorder-' + props.color}>
+		{props.children}
+	  </div>
+	);
+  }
+  
+  function Dialog(props) {
+	return (
+	  <FancyBorder color="blue">
+		<h1 className="Dialog-title">
+		  {props.title}
+		</h1>
+		<p className="Dialog-message">
+		  {props.message}
+		</p>
+		{props.children}
+	  </FancyBorder>
+	);
+  }
+  class SignUpDialog extends React.Component {
+	  constructor(props) {
+		  super(props);
+		  this.handleChange=this.handleChange.bind(this);
+		  this.handleSignUp=this.handleSignUp.bind(this);
+		  this.state = {login : ''}
+	  }
+	  render(){
+		if (process.env.NODE_ENV === 'development') {
+			const whyDidYouRender = require('@welldone-software/why-did-you-render');
+			whyDidYouRender(React, {
+			  trackAllPureComponents: true,
+			});
+		  }
+		  return (
+			  
+		  <Dialog title = 'Программа исследования Марса' message = 'Как к вам обращаться?' >
+			<input value ={this.state.login} onChange={this.handleChange}/>
+			<button onClick = {this.handleSignUp}>Запиши меня</button></Dialog>
+	)}
+  
+  handleChange(e){
+	  this.setState({login : e.target.value});
+  }
+  handleSignUp () {
+	  alert (`Добро пожаловать на борт, ${this.state.login}!`)
+  }
+}
+
 ReactDOM.render(
 	<Container>
 		<Margin>
@@ -238,6 +303,10 @@ ReactDOM.render(
 		<Margin>
 			<Calculator />
 		</Margin>
+		<Margin>
+			<SignUpDialog />
+		</Margin>
+		
 	</Container>,
 	document.getElementById('root')
 );
