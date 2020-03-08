@@ -8,6 +8,7 @@ class App extends React.Component {
         return(
         <Container>
            <Footer/>
+           <Footer/>
             </Container>)
         
     }
